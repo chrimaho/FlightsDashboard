@@ -99,6 +99,13 @@ sb.write("Flights data from:\nhttps://zenodo.org/record/3737102")
 sb.write("Covid data from:\nhttps://ourworldindata.org/coronavirus")
 sb.subheader("Future")
 sb.write("Imagine the benefit we could add by analysing our own data.")
+sb.subheader("Source Code")
+sb.markdown(unsafe_allow_html=True, body=
+"""
+[GitHub](https://github.com/chrimaho/FlightsDashboard)
+<br>
+[StreamLit](https://share.streamlit.io/chrimaho/flightsdashboard/main/src/dashboard/db.py)
+""")
 
 
 
