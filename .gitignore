@@ -1,5 +1,6 @@
 # Customs
 Pipfile.lock
+Pipfile
 .venv/
 additional/
 .vscode/

@@ -89,6 +89,20 @@ covidDF = load_covid_data("./data/external/covid.csv")
 
 
 #------------------------------------------------------------------------------#
+# Side Bar                                                                  ####
+#------------------------------------------------------------------------------#
+
+sb = st.sidebar
+sb.header("Data Sources")
+sb.write("**Analysis provided from Public data.**")
+sb.write("Flights data from:\nhttps://zenodo.org/record/3737102")
+sb.write("Covid data from:\nhttps://ourworldindata.org/coronavirus")
+sb.subheader("Future")
+sb.write("Imagine the benefit we could add by analysing our own data.")
+
+
+
+#------------------------------------------------------------------------------#
 # Page Header Parts                                                         ####
 #------------------------------------------------------------------------------#
 
@@ -115,17 +129,18 @@ date = st.slider \
 # Subheader
 st.subheader("Interactive Map")
 
-#------------------------------------------------------------------------------#
-# Side Bar                                                                  ####
-#------------------------------------------------------------------------------#
 
-sb = st.sidebar
-sb.header("Sources")
-sb.write("**Analysis provided from Public data.**")
-sb.write("Flights data from:\nhttps://zenodo.org/record/3737102")
-sb.write("Covid data from:\nhttps://ourworldindata.org/coronavirus")
-sb.subheader("Future")
-sb.write("Imagine the benefit we could add by analysing our own data.")
+# Subheader
+st.markdown(unsafe_allow_html=True, body=
+"""
+The below Map has the following features:
+
+- The <span style="color: rgba(240, 100, 0, 40)">**orange**</span> colour indicates the DEPARTURE airport.
+- The <span style="color: rgba(0, 200, 0, 100)">**green**</span> colour indicates the DESTINATION airport.
+- The <span style="color: red">**red**</span> colour indicates countries with COVID hotspots, and<br>
+the size of the circle indicates the amount of cases.
+""")
+
 
 
 
