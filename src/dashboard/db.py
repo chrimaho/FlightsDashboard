@@ -121,28 +121,32 @@ carsDF = load_cars_data("./data/external/car-accidents.csv")
 #------------------------------------------------------------------------------#
 
 sb = st.sidebar
-sb.header("Data Sources")
 sb.markdown(unsafe_allow_html=True, body=
 """
-**Analysis provided from Public data.**<br>
-Flights data from:\n[Zenodo.org](https://zenodo.org/record/3737102)<br>
-Covid data from:\n[OurWorldInData.org](https://ourworldindata.org/coronavirus)<br>
-Uber data from:\n[GitHub/Uber-common](https://raw.githubusercontent.com/uber-common/deck.gl-data/master/examples/3d-heatmap/heatmap-data.csv)<br>
+### Data Sources
+Analysis provided from Public data.<br>
+*Flights*:\n[Zenodo.org](https://zenodo.org/record/3737102)<br>
+*Covid*:\n[OurWorldInData.org](https://ourworldindata.org/coronavirus)<br>
+*Uber*:\n[GitHub/Uber-common](https://raw.githubusercontent.com/uber-common/deck.gl-data/master/examples/3d-heatmap/heatmap-data.csv)<br>
 """
 )
-sb.subheader("**Future**")
 sb.markdown(unsafe_allow_html=True, body=
 """
+### Future
 Imagine the benefit we could add by analysing **our own** data.
 """
 )
-sb.subheader("Source Code")
 sb.markdown(unsafe_allow_html=True, body=
 """
+### Source Code
 [GitHub](https://github.com/chrimaho/FlightsDashboard)<br>
 [StreamLit](https://share.streamlit.io/chrimaho/flightsdashboard/main/src/dashboard/db.py)
 """)
-
+sb.markdown(unsafe_allow_html=True, body=
+"""
+### Author
+[Chris Mahoney](https://www.chrimaho.com)
+""")
 
 
 
