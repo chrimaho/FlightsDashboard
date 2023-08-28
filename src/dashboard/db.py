@@ -74,7 +74,7 @@ def load_flights_data(path:str):
 #@st.cache_data
 def load_covid_data(path:str):
     df = load_data(path)
-    df['date'] = pd.to_datetime(df['date']).dt.strftime('%Y-%m-%d')
+    df['date'] = pd.to_datetime(df['date'], format="%d/%m/%Y").dt.strftime('%Y-%m-%d')
     return df
 
 #@st.cache_data
