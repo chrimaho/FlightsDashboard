@@ -65,24 +65,24 @@ st.set_page_config \
 def load_data(path:str):
     return pd.read_csv(path, header=0)
 
-@st.cache
+@st.cache_data
 def load_flights_data(path:str):
     df = load_data(path)
     df['firstseen'] = pd.to_datetime(df['firstseen']).dt.strftime('%Y-%m-%d')
     return df
 
-@st.cache
+@st.cache_data
 def load_covid_data(path:str):
     df = load_data(path)
     df['date'] = pd.to_datetime(df['date']).dt.strftime('%Y-%m-%d')
     return df
 
-@st.cache
+@st.cache_data
 def load_cars_data(path:str):
     df = load_data(path)
     return df
 
-# @st.cache
+# @st.cache_data
 def download_csv(data:pd.DataFrame):
     csv = data.to_csv(index=False)
     b64 = base64.b64encode(csv.encode()).decode()
