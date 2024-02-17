@@ -21,6 +21,7 @@ import pandas as pd
 import pydeck as pdk
 from datetime import date
 import os, sys, base64
+from textwrap import dedent
 
 # Constants ----
 REPO_NAME = "FLIGHTSDASHBOARD"
@@ -91,14 +92,14 @@ def download_csv(data: pd.DataFrame):
 
 
 # ------------------------------------------------------------------------------#
-#                                                                              #
-#    Main                                                                   ####
-#                                                                              #
+#                                                                               #
+#    Main                                                                    ####
+#                                                                               #
 # ------------------------------------------------------------------------------#
 
 
 # ------------------------------------------------------------------------------#
-# Get Data                                                                  ####
+# Get Data                                                                   ####
 # ------------------------------------------------------------------------------#
 
 
@@ -113,53 +114,61 @@ carsDF = load_cars_data("./data/external/car-accidents.csv")
 
 
 # ------------------------------------------------------------------------------#
-# Side Bar                                                                  ####
+# Side Bar                                                                   ####
 # ------------------------------------------------------------------------------#
 
 sb = st.sidebar
 sb.markdown(
     unsafe_allow_html=True,
-    body="""
-### Data Sources
-Analysis provided from Public data.<br>
-*Flights*:\n[Zenodo.org](https://zenodo.org/record/3737102)<br>
-*Covid*:\n[OurWorldInData.org](https://ourworldindata.org/coronavirus)<br>
-*Uber*:\n[GitHub/Uber-common](https://raw.githubusercontent.com/uber-common/deck.gl-data/master/examples/3d-heatmap/heatmap-data.csv)<br>
-""",
+    body=dedent(
+        """
+        ### Data Sources
+        Analysis provided from Public data.<br>
+        *Flights*:\n[Zenodo.org](https://zenodo.org/record/3737102)<br>
+        *Covid*:\n[OurWorldInData.org](https://ourworldindata.org/coronavirus)<br>
+        *Uber*:\n[GitHub/Uber-common](https://raw.githubusercontent.com/uber-common/deck.gl-data/master/examples/3d-heatmap/heatmap-data.csv)<br>
+        """
+    ),
 )
 sb.markdown(
     unsafe_allow_html=True,
-    body="""
+    body=dedent(
+        """
 ### Future
 Imagine the benefit we could add by analysing **our own** data.
-""",
+"""
+    ),
 )
 sb.markdown(
     unsafe_allow_html=True,
-    body="""
+    body=dedent(
+        """
 ### Source Code
 [GitHub](https://github.com/chrimaho/FlightsDashboard)<br>
 [StreamLit](https://share.streamlit.io/chrimaho/flightsdashboard/main/src/dashboard/db.py)
-""",
+"""
+    ),
 )
 sb.markdown(
     unsafe_allow_html=True,
-    body="""
+    body=dedent(
+        """
 ### Author
 [Chris Mahoney](https://www.chrimaho.com)
-""",
+"""
+    ),
 )
 
 
 # ------------------------------------------------------------------------------#
-#                                                                              #
-#    Flights Data                                                           ####
-#                                                                              #
+#                                                                               #
+#    Flights Data                                                            ####
+#                                                                               #
 # ------------------------------------------------------------------------------#
 
 
 # ------------------------------------------------------------------------------#
-# Page Header Parts                                                         ####
+# Page Header Parts                                                          ####
 # ------------------------------------------------------------------------------#
 
 
@@ -169,15 +178,17 @@ st.write("*As affected by Covid in early 2020*")
 
 st.markdown(
     unsafe_allow_html=True,
-    body="""
-The following analysis shows the number of flights coming in and out of Australia.
+    body=dedent(
+        """
+        The following analysis shows the number of flights coming in and out of Australia.
 
-It is easy to see how all throughout January & February, there was a healthy amount of flights coming and going out of Australia. Primarily to the key areas of APAC Middle East, Europe & America.
+        It is easy to see how all throughout January & February, there was a healthy amount of flights coming and going out of Australia. Primarily to the key areas of APAC Middle East, Europe & America.
 
-However, as COVID hit us at the end of March, you will see how quickly the COVID hotspots increased, and you can see how dramatically the flights density dropped off.
+        However, as COVID hit us at the end of March, you will see how quickly the COVID hotspots increased, and you can see how dramatically the flights density dropped off.
 
-This is knowledge that we all know and understand. This visualisation confirms our pre-existing belief of what happened during this time. However, the value of this visual is how interactive it is, and how easily one can navigate around to get a thorough understanding of the situation, in a very short amount of time.
-""",
+        This is knowledge that we all know and understand. This visualisation confirms our pre-existing belief of what happened during this time. However, the value of this visual is how interactive it is, and how easily one can navigate around to get a thorough understanding of the situation, in a very short amount of time.
+        """
+    ),
 )
 
 # Subheader
@@ -199,18 +210,20 @@ st.subheader("Interactive Map")
 # Subheader
 st.markdown(
     unsafe_allow_html=True,
-    body="""
-The below Map has the following features:
-- The <span style="color: rgba(240, 100, 0, 40)">**orange**</span> colour indicates the DEPARTURE airport.
-- The <span style="color: rgba(0, 200, 0, 100)">**green**</span> colour indicates the DESTINATION airport.
-- The <span style="color: red">**red**</span> colour indicates countries with COVID hotspots, and<br>
-the SIZE of the circle indicates the amount of cases.
-""",
+    body=dedent(
+        """
+        The below Map has the following features:
+        - The <span style="color: rgba(240, 100, 0, 40)">**orange**</span> colour indicates the DEPARTURE airport.
+        - The <span style="color: rgba(0, 200, 0, 100)">**green**</span> colour indicates the DESTINATION airport.
+        - The <span style="color: red">**red**</span> colour indicates countries with COVID hotspots, and<br>
+        the SIZE of the circle indicates the amount of cases.
+        """
+    ),
 )
 
 
 # ------------------------------------------------------------------------------#
-# Filter Data                                                               ####
+# Filter Data                                                                ####
 # ------------------------------------------------------------------------------#
 
 # Flights
@@ -221,7 +234,7 @@ covidDF = covidDF[covidDF["date"] == date.isoformat()]
 
 
 # ------------------------------------------------------------------------------#
-# Set Visual                                                                ####
+# Set Visual                                                                 ####
 # ------------------------------------------------------------------------------#
 
 
@@ -281,13 +294,15 @@ map = st.pydeck_chart(
 # Protips
 st.markdown(
     unsafe_allow_html=True,
-    body="""
-**ProTips:**
+    body=dedent(
+        """
+        **ProTips:**
 
-1. <img src="https://icons-for-free.com/iconfiles/png/512/move-1321215623357277485.png" width=30></img> To pan : `click` & drag
-2. <img src="https://icons-for-free.com/iconfiles/png/512/zoom+icon-1320166878528919604.png" width=30></img>To zoom: `scroll` up & down
-3. <img src="https://icons-for-free.com/iconfiles/png/512/rotate+icon-1320166903129623074.png" width=30></img> To rotate: `ctrl`+`click` & drag
-""",
+        1. <img src="https://icons-for-free.com/iconfiles/png/512/move-1321215623357277485.png" width=30></img> To pan : `click` & drag
+        2. <img src="https://icons-for-free.com/iconfiles/png/512/zoom+icon-1320166878528919604.png" width=30></img>To zoom: `scroll` up & down
+        3. <img src="https://icons-for-free.com/iconfiles/png/512/rotate+icon-1320166903129623074.png" width=30></img> To rotate: `ctrl`+`click` & drag
+        """
+    ),
 )
 
 # Subheader
@@ -311,14 +326,14 @@ st.write("---")
 
 
 # ------------------------------------------------------------------------------#
-#                                                                              #
-#    Land                                                                   ####
-#                                                                              #
+#                                                                               #
+#    Land                                                                    ####
+#                                                                               #
 # ------------------------------------------------------------------------------#
 
 
 # ------------------------------------------------------------------------------#
-# Header                                                                    ####
+# Header                                                                     ####
 # ------------------------------------------------------------------------------#
 
 # Title
@@ -328,17 +343,19 @@ st.write("*For data in England*")
 # Analysis
 st.markdown(
     unsafe_allow_html=True,
-    body="""
-The following analysis is an overview of the amount of accidents which Uber has had over 1 year.
+    body=dedent(
+        """
+        The following analysis is an overview of the amount of accidents which Uber has had over 1 year.
 
-Quite clearly, the data is showing for England, UK. However, it is very easy to see just how many accidents there are in the differen parts of the country. From this, it's easy to conclude that there is an esceptionally high number of crashes in London. 
+        Quite clearly, the data is showing for England, UK. However, it is very easy to see just how many accidents there are in the differen parts of the country. From this, it's easy to conclude that there is an esceptionally high number of crashes in London. 
 
-This visual can be replicated for any country. It can show us, for example, the density of pickups or deliveries in certain geographic regions. It can also help us, for example, complete some Centre-of-Gravity analysis to determine the ideal locations to establish a new warehouse. Or the routes which our Drivers should go to have the most efficient delivery route.
+        This visual can be replicated for any country. It can show us, for example, the density of pickups or deliveries in certain geographic regions. It can also help us, for example, complete some Centre-of-Gravity analysis to determine the ideal locations to establish a new warehouse. Or the routes which our Drivers should go to have the most efficient delivery route.
 
-Again, the beauty of this visual is in it's simplicity and it's usability.
+        Again, the beauty of this visual is in it's simplicity and it's usability.
 
-Just imagine what we can do with our own internal data.
-""",
+        Just imagine what we can do with our own internal data.
+        """
+    ),
 )
 
 # Define a layer to display on a map
@@ -374,13 +391,15 @@ deckchart = st.pydeck_chart(pdk.Deck(initial_view_state=view_state, layers=[laye
 # Protips
 st.markdown(
     unsafe_allow_html=True,
-    body="""
-**ProTips:**
+    body=dedent(
+        """
+        **ProTips:**
 
-1. <img src="https://icons-for-free.com/iconfiles/png/512/move-1321215623357277485.png" width=30></img> To pan : `click` & drag
-2. <img src="https://icons-for-free.com/iconfiles/png/512/zoom+icon-1320166878528919604.png" width=30></img>To zoom: `scroll` up & down
-3. <img src="https://icons-for-free.com/iconfiles/png/512/rotate+icon-1320166903129623074.png" width=30></img> To rotate: `ctrl`+`click` & drag
-""",
+        1. <img src="https://icons-for-free.com/iconfiles/png/512/move-1321215623357277485.png" width=30></img> To pan : `click` & drag
+        2. <img src="https://icons-for-free.com/iconfiles/png/512/zoom+icon-1320166878528919604.png" width=30></img>To zoom: `scroll` up & down
+        3. <img src="https://icons-for-free.com/iconfiles/png/512/rotate+icon-1320166903129623074.png" width=30></img> To rotate: `ctrl`+`click` & drag
+        """
+    ),
 )
 
 # Subheader
